@@ -1,0 +1,9 @@
+SELECT E. name, 
+       SUM(amount) AS total_revenue
+FROM payment A
+INNER JOIN rental B on A. rental_id = B. rental_id
+INNER JOIN inventory C on B. inventory_id = C. inventory_id
+INNER JOIN film_category D on C. film_id = D. film_id
+INNER JOIN category E on D. category_id = E. category_id
+GROUP BY name
+ORDER BY SUM(amount) DESC
